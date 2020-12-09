@@ -1,4 +1,5 @@
-const initialState = null;
+import { CORRECT_GUESS } from '../types';
+const initialState = false;
 
 /**
  * @function successReducer
@@ -10,6 +11,8 @@ const successReducer = (state = initialState, action) => {
     const { type, payload } = action;
 
     switch (type) {
+        case CORRECT_GUESS:
+            return true;
         default:
             return state;
     }
