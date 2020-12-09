@@ -21,15 +21,36 @@ const setup = (initialState = {}) => {
     const wrapper = shallow(<Input store={store} />)
         .dive()
         .dive();
+
+    return wrapper;
 };
 
 describe('Render Phase', () => {
     describe('Word has not been guessed', () => {
-        test('Should render component without error', () => {});
+        let wrapper;
 
-        test('Should render input box', () => {});
+        beforeEach(() => {
+            const initialState = { success: false };
+            wrapper = setup(initialState);
+        });
 
-        test('Should render submit button', () => {});
+        test('Should render component without error', () => {
+            const component = findByTestAttr(wrapper, 'component-input');
+
+            expect(component.length).toBe(1);
+        });
+
+        test('Should render input box', () => {
+            const inputBox = findByTestAttr(wrapper, 'input-box');
+
+            expect(inputBox.length).toBe(1);
+        });
+
+        test('Should render submit button', () => {
+            const submitBtn = findByTestAttr(wrapper, 'submit-button');
+
+            expect(submitBtn.length).toBe(1);
+        });
     });
 
     describe('Word has been guessed', () => {
