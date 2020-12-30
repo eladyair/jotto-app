@@ -1,5 +1,5 @@
 import { GUESS_WORD } from '../types';
-const initialState = false;
+const initialState = [];
 
 /**
  * @function guessWordReducer
@@ -8,7 +8,15 @@ const initialState = false;
  * @returns {boolean} - new guessedWords state
  */
 const guessWordReducer = (state = initialState, action) => {
-    return null;
+    const { type, payload } = action;
+
+    switch (type) {
+        case GUESS_WORD:
+            return [...state, payload];
+
+        default:
+            return state;
+    }
 };
 
 export default guessWordReducer;
