@@ -1,4 +1,4 @@
-import {} from '../types';
+import { SET_SECRET_WORD } from '../types';
 
 const initialState = null;
 
@@ -9,7 +9,15 @@ const initialState = null;
  * @returns {boolean} - new guessedWords state
  */
 const secretWordReducer = (state = initialState, action) => {
-    return state;
+    const { type, payload } = action;
+
+    switch (type) {
+        case SET_SECRET_WORD:
+            return payload;
+
+        default:
+            return state;
+    }
 };
 
 export default secretWordReducer;
