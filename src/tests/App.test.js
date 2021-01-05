@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import { storeFactory } from '../../test/testUtils';
 
 // Component
-import App from '../App';
+import App, { UnconnectedApp } from '../App';
 
 /**
  * Factory function to create a ShallowWrapper for the connected Input component
@@ -24,6 +24,28 @@ const setup = (initialState = {}) => {
 
     return wrapper;
 };
+
+describe('Unconnected App Component', () => {
+    test('Should run `getSecretWord` on App mount', () => {
+        const getSecretWordMock = jest.fn();
+
+        const props = {
+            getSecretWord: getSecretWordMock,
+            success: false,
+            guessedWords: []
+        };
+        // Set up app component with getSecretWordMock as the getSecretWord prop
+        const wrapper = shallow(<UnconnectedApp {...props} />);
+
+        // Run lifecycle method
+        wrapper.instance().componentDidMount();
+
+        // Check to see if the mock ran
+        const getSecretWordCallCount = getSecretWordMock.mock.calls.length;
+
+        expect(getSecretWordCallCount).toBe(1);
+    });
+});
 
 describe('Redux Props', () => {
     test('Should have access to `success` in state', () => {
