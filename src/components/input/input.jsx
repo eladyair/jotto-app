@@ -4,12 +4,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { guessWord } from '../../redux/guess-word/guess-word.actions';
 
-class Input extends Component {
+export class UnconnectedInput extends Component {
     render() {
         const contents = this.props.success ? null : (
             <form className='form-inline'>
                 <input type='text' placeholder='Enter guess' className='mb-2 mx-sm-3' data-test='input-box' />
-                <button type='submit' className='btn btn-primary mb-2' data-test='submit-button'>
+                <button type='submit' className='btn btn-primary mb-2' data-test='submit-button' onClick={() => this.props.guessWord('train')}>
                     Submit
                 </button>
             </form>
@@ -23,4 +23,4 @@ const mapStateToProps = ({ success }) => {
     return { success };
 };
 
-export default connect(mapStateToProps, { guessWord })(Input);
+export default connect(mapStateToProps, { guessWord })(UnconnectedInput);
