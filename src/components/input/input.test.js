@@ -141,5 +141,9 @@ describe('Unconnected Input Component', () => {
 
             expect(guessWordArg).toBe(guessedWord);
         });
+
+        test('Should clear input box on submit', () => {
+            expect(wrapper.state('currentGuess')).toBe('');
+        });
     });
 });
